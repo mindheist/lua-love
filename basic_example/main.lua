@@ -41,6 +41,7 @@ end
 ----------------------------------------------------------------------
 
 function love.update(dt)
+  -- https://love2d.org/wiki/love.keyboard.isDown
   if love.keyboard.isDown("left") then
     hero.x = hero.x - hero.speed*dt
   elseif love.keyboard.isDown("right") then
@@ -51,6 +52,8 @@ end
 ----------------------------------------------------------------------
 
 function love.draw()
+  -- https://love2d.org/wiki/love.graphics.rectangle : draws a rectangle
+  -- https://love2d.org/wiki/love.graphics.setColor  : sets color
   love.graphics.setColor(255,0,0,255)
   love.graphics.rectangle("fill",0,465,800,150)
 
@@ -64,3 +67,6 @@ function love.draw()
 
 end
 ----------------------------------------------------------------------
+
+-- There is a follow up tutorial to this at http://www.headchant.com/2010/12/31/love2d-tutorial-part-2-pew-pew/
+-- Unfortunately its not the most well written 
