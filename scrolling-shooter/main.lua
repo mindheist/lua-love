@@ -1,8 +1,8 @@
 -- Link to the Tutorial : http://osmstudios.com/page/your-first-love2d-game-in-200-lines-part-2-of-3
--- Still need to understand all of the bullet tracking logic.
+-- Still need to understand all of the bullet tracking and timef logic.
 
 canShoot = true
-canShootTimerMax = 0.2
+canShootTimerMax = 1.0 -- This is actually measured in seconds and actually indicates the time between consecutive fires.
 canShootTimer = canShootTimerMax
 
 bulletImg = nil
@@ -11,7 +11,7 @@ bullets = {}
 player = { x = 200, y = 710, speed = 150, img = nil }
 
 ----------------------------------------------------------------------
-
+-- Loading all necesary sprites
 function love.load(arg)
   player.img = love.graphics.newImage('assets/plane.png')
   bulletImg = love.graphics.newImage('assets/bullet.png')
@@ -36,7 +36,9 @@ function love.update(dt)
 	end
 
   -- Time out how far apart our shots can be.
-  canShootTimer = canShootTimer - (1 * dt)
+  canShootTimer = canShootTimer - (1 * dt) -- this is the countdown logic line and also note
+  -- that the multiplier in this line is 1, if you increase it to 2 or 4 , the timer resets faster
+
   if canShootTimer < 0 then
     canShoot = true
   end
@@ -59,6 +61,7 @@ function love.update(dt)
 end -- end of update function
 
 ----------------------------------------------------------------------
+
 function love.draw()
   love.graphics.draw(player.img,player.x,player.y)
 
